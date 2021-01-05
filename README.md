@@ -8,7 +8,7 @@ node cli的本质其实就是执行node脚本。
 ### 初识命令行
 一个命令行中可以由命令、参数和选项等组成，如：
 ```javascript
-//create就是命令 app就是参数
+//create-um就是命令 app就是参数
 create-umi app
 //-l就是选项，还有-v,--version 
 ls -l                   
