@@ -1,4 +1,4 @@
-日常前端开发中，经常见到各种cli，如一行命令帮你生成vue项目模板的vue-cli。编写合适的命令行工具也可以快速构建出适合自己项目的模板。
+日常前端开发中，经常见到各种cli，如一行命令帮你生成react项目模板的create-umi。编写合适的命令行工具也可以快速构建出适合自己项目的模板。
 
 ## 前言
 node cli的本质其实就是执行node脚本。
@@ -9,7 +9,7 @@ node cli的本质其实就是执行node脚本。
 一个命令行中可以由命令、参数和选项等组成，如：
 ```javascript
 //create就是命令 app就是参数
-vue create app
+create-umi app
 //-l就是选项，还有-v,--version 
 ls -l                   
 ```
