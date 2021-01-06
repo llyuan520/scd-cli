@@ -3,7 +3,7 @@
 ## 前言
 node cli的本质其实就是执行node脚本。
 先安装好node及npm: [Nodejs官网下载](https://nodejs.org/en/)
-构建命令的基础需要一个执行文件scd.js及package.json配置文件。
+构建命令的基础需要一个执行文件run.js及package.json配置文件。
 
 ### 初识命令行
 一个命令行中可以由命令、参数和选项等组成，如：
@@ -23,46 +23,46 @@ mkdir scd-cli
 // package.json的name将作为发布到npm上的包名称
 npm init
 ```
-初始化执行文件scd.js
+初始化执行文件run.js
 ```javascript
 // 在scd-cli文件夹下
 mkdir bin
-// 在bin文件夹下新建scd.js
-touch scd.js
+// 在bin文件夹下新建run.js
+touch run.js
 ```
-测试程序scd is run!
+测试程序scd-cli is run!
 ```javascript
-// 在scd.js中写入
+// run.js中写入
 // #!/usr/bin/env node 表示使用node作为脚本的解释程序，node的路径通过env来查找
-// 本来需要这样运行node ./scd.js，但是加上了这句后就可以直接./scd.js运行
+// 本来需要这样运行node ./run.js，但是加上了这句后就可以直接./run.js运行
 #!/usr/bin/env node
-console.log('scd is run!')
+console.log('scd-cli is run!')
 ```
-package.json中添加bin字段，增加命令scd
+package.json中添加bin字段，增加命令scd-cli
 ```javascript
 "bin": {
-    "scd": "bin/scd.js"
+    "scd-cli": "bin/run.js"
 }
 ```
 将该命令行工具安装到本地全局
 ```javascript
 npm install . -g
 ```
-命令行中输入scd，若正常打印scd is run!即表示测试通过
+命令行中输入scd-cli，若正常打印scd-cli is run!即表示测试通过
 ```javascript
-scd
+scd-cli
 ```
-通过建立软链接，当修改scd.js时，执行scd.js运行结果也会有变化
+通过建立软链接，当修改run.js时，执行run.js运行结果也会有变化
 ```javascript
 // 显示下面信息即链接成功
-// /usr/local/bin/scd -> /usr/local/lib/node_modules/scd-cli/bin/scd.js
+// /usr/local/bin/run -> /usr/local/lib/node_modules/scd-cli/bin/run.js
 // /usr/local/lib/node_modules/scd-cli -> /Users/snow/program-files/my-study/node/scd-cli
 npm link
 
-// 修改scd.js 增加：
-console.log('scd changes optionally')
+// 修改run.js 增加：
+console.log('scd-cli changes optionally')
 
-// 再次执行命令scd，也会打印 scd changes optionally
+// 再次执行命令scd-cli，也会打印 scd-cli changes optionally
 ```
 ## 安装依赖模块开发
 用到的一些模块：
@@ -126,17 +126,17 @@ ora().fail(err)
 该项目可以通过选择下载不同的项目模板，配置自己的 package.json，并且可以选择是否要进行安装依赖。
 ![项目文件目录](https://github.com/llyuan520/scd-cli.git)
 
-- bin  // 这里放置一些命令文件，例如scd.js为入口文件，scd-init.js 为scd init命令
+- bin  // 这里放置一些命令文件，例如run.js为入口文件，run-init.js 为scd-cli init命令
 - lib  // 存放一些编写需要的公共方法
 - config // 配置文件，一些配置项
 
-### scd.js
+### run.js
 ```javascript
 #!/usr/bin/env node
 
-// console.log('scd is run!')
+// console.log('scd-cli is run!')
 
-// console.log('scd changes optionally')
+// console.log('scd-cli changes optionally')
 
 const program = require('commander');
 program
@@ -150,7 +150,7 @@ program
 ### scd-init.js
 根据传入的项目名称及命令行中选择的模板进行模板下载。具体执行过程如下：
 ```javascript
-userdeMacBook-Pro:scd-cli snow$ scd init app
+userdeMacBook-Pro:scd-cli snow$ scd-cli init app
 开始创建...
 ? 请选择模板 plugins
 ⠹ 开始下载模板，模板地址： git@github.com:umijs/plugins.git:
@@ -193,7 +193,7 @@ npm adduser --registry http://registry.npmjs.org
 ![scd-cli](https://github.com/llyuan520/scd-cli.git)
 2.  在任意目录下执行 npm 
 npm install scd-cli -g
-执行scd init app 看是否成功
+执行scd-cli init app 看是否成功
 
 ### 版本更新
 如果项目目录有所修改，则需要修改package.json中的version，修改之后再次执行 npm publish。
